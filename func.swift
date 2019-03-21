@@ -1,9 +1,10 @@
+// 2019/3/21, updated for swift4.2
 func test(dB: Int, _ amp: Int) -> Int {
     return dB * amp
 }
 // 関数は定数とか変数に代入可能
 var myFunc: (Int,Int)->Int = test
-print(test(10, 20))
+print(test(dB: 10, 20))
 print(myFunc(10, 20))
 
 func extname(dB d: Int, amp a: Int) -> Int { // 外部引数名
@@ -23,9 +24,9 @@ func nested(dB: Int, amp: Int) -> Int {
         }
         return b
     }
-    return mypow(dB) * amp
+    return mypow(dB: dB) * amp
 }
-print(nested(3, amp:20))
+print(nested(dB: 3, amp: 20))
 
 func sum(first: Int, _ rest: Int...) -> Int { // 可変長引数
     var total = first
@@ -34,20 +35,21 @@ func sum(first: Int, _ rest: Int...) -> Int { // 可変長引数
     }
     return total
 }
-print(sum(1,2,3,4,5,6,7,8,9,10))
+print(sum(first: 1,2,3,4,5,6,7,8,9,10))
 
 func sayHello(name: String = "world") { // デフォルト引数
     print("Hello, \(name)!")
 }
 sayHello()
-sayHello("John")
+sayHello(name: "John")
 
-func swap(inout a: Int, inout b: Int) { // 参照渡し
+func swap(a: inout Int, b: inout Int) { // 参照渡し
     let tmp = a
     a = b
     b = tmp
 }
-var arr = [1,2]
-print(arr)
-swap(&arr[0], &arr[1])
-print(arr)
+var x = 1
+var y = 2
+print(x, y)
+swap(&x, &y)
+print(x, y)
